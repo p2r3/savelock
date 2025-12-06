@@ -1,5 +1,5 @@
 # savelock
-Prevents loading save files of uninstalled mods.
+Prevents instances of user error, such as loading save files of uninstalled mods or submitting accidentally cheated Challenge Mode records.
 
 Usage:
 1. Place the script file in `scripts/vscripts/`.

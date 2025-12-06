@@ -29,6 +29,17 @@ if (!("Entities" in this)) return;
   }
   if (!auto) auto = Entities.CreateByClassname("logic_auto");
   auto.ConnectOutput("OnLoadGame", "__slLoad");
+  /**
+   * Check for the Challenge Mode flags entity and toggle sv_cheats if
+   * found. This is to prevent users from accidentally setting CM records
+   * using a modded game.
+   */
+  local flags = Entities.FindByClassname(null, "challenge_mode_end_node");
+  if (flags) {
+    printl("Found Challenge Mode flags, enabling cheats.");
+    local cmd = Entities.CreateByClassname("point_broadcastclientcommand");
+    EntFireByHandle(cmd, "Command", "sv_cheats 1", 1.5, null, null);
+  }
 };
 
 // Called after the map has finished loading, on every load
